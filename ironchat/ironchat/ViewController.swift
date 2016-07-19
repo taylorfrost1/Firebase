@@ -9,15 +9,19 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var firstTextField: UITextField!
     @IBOutlet weak var secondTextField: UITextField!
     
-    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+        
+        self.firstTextField.delegate = self
         
         //Check if I am logged in or not
         
@@ -34,31 +38,9 @@ class ViewController: UIViewController {
             self.signInUser("taylorhamblinfrost@gmail.com", password: "123456")
         }
         
-//        self.createUser("taylorhamblinfrost@gmail.com", password: "123456")
     }
 
-    
-//    func createUser(email: String, password: String) {
-//        
-//        FIRAuth.auth()?.createUserWithEmail(email, password: password) {
-//            
-//            (user, error) in
-//            
-//            if error != nil{
-//                print(error?.localizedDescription)
-//            }
-//            
-//            if let user = user{
-//                
-//                print(user.uid)
-//                print("Success! Create user \(email)")
-//                
-//            }
-//
-//        }
-//    }
-
-    
+  
     func signOutUser() {
         
         try! FIRAuth.auth()!.signOut()
@@ -75,15 +57,17 @@ class ViewController: UIViewController {
                 
                 print(error?.localizedDescription)
                 print("Sorry, this user hasn't been registered!")
+                self.alertController()
             }
             
             if let user = user {
                 
                 print("\(user.email) signed in!")
+                
+                self.performSegueWithIdentifier("firstSegue", sender: self)
+  
             }
-            
         }
-   
     }
     
     @IBAction func firstButton(sender: UIButton) {
@@ -114,5 +98,35 @@ class ViewController: UIViewController {
         
     }
     
+    func alertController() {
+        
+        let alertController = UIAlertController(title: "Sorry!", message: "We don't recognize this login.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let saveAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
+            alert -> Void in
+        })
+        
+        alertController.addAction(saveAction)
+       
+        self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    
+    func dismissKeyboard() {
+
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.firstTextField {
+            self.secondTextField.becomeFirstResponder()
+        }
+        
+        return true
+    }
+    
+
+    
 }
+    
+
 

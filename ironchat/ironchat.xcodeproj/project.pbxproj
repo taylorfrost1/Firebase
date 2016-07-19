@@ -63,6 +63,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FD07AF641D3EC9E300BCDDC0 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				FDE373DF1D3E9A2400033C71 /* ViewController.swift */,
+				FDE373F11D3EB4CD00033C71 /* SecondViewController.swift */,
+				FDE373F31D3EB78A00033C71 /* ThirdViewController.swift */,
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		FDE373D11D3E9A2400033C71 = {
 			isa = PBXGroup;
 			children = (
@@ -85,9 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				FDE373DD1D3E9A2400033C71 /* AppDelegate.swift */,
-				FDE373DF1D3E9A2400033C71 /* ViewController.swift */,
-				FDE373F11D3EB4CD00033C71 /* SecondViewController.swift */,
-				FDE373F31D3EB78A00033C71 /* ThirdViewController.swift */,
+				FD07AF641D3EC9E300BCDDC0 /* New Group */,
 				FDE373E11D3E9A2400033C71 /* Main.storyboard */,
 				FDE373E41D3E9A2400033C71 /* Assets.xcassets */,
 				FDE373E61D3E9A2400033C71 /* LaunchScreen.storyboard */,
